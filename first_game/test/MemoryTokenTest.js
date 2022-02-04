@@ -33,4 +33,19 @@ require('chai')
                 assert.equal(symbol, 'MTT')
             })
     })
+
+    describe('token distribution', async () => {
+        let result
+
+        it('mints tokens', async () => {
+
+            await token.mint(accounts[0], 'https://www.token-uri.com/nft')
+
+            // It should increase the total sypply
+    
+            result = await token.totalSupply()
+            assert.equal(result.toString(), '1', 'total supply is correct')
+        })
+    })
+
 })
