@@ -1,6 +1,6 @@
 const { assert } = require('chai')
 
-const PacCatToken = artifacts.require('.contracts/MemoryToken.sol')
+const MemoryToken = artifacts.require('.contracts/MemoryToken.sol')
 
 require('chai')
     .use(require('chai-as-promised'))
@@ -21,6 +21,16 @@ require('chai')
                 assert.notEqual(address, '')
                 assert.notEqual(address, null)
                 assert.notEqual(address, undefined)
+            })
+
+            it('has a name', async ()=> {
+                const name = await token.name()
+                assert.equal(name, 'Memory Token')
+            })
+            
+            it('has a symbol', async () => {
+                const symbol = await token.symbol()
+                assert.equal(symbol, 'MTT')
             })
     })
 })
