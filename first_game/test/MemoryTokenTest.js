@@ -41,11 +41,23 @@ require('chai')
 
             await token.mint(accounts[0], 'https://www.token-uri.com/nft')
 
-            // It should increase the total sypply
+            // It should increase the total supply
     
             result = await token.totalSupply()
             assert.equal(result.toString(), '1', 'total supply is correct')
+
+        // it increments owner balance
+        result = await token.balanceOf(accounts[0])
+        assert.equal(result.toString(), '1', 'balanceOf is correct')
+
+
+        // Token should belong to owner
+        result = await token.ownerOf('1')
+        assert.equal(result.toString(), accounts[0].toString(), 'ownerOf is correct')
+        result - await token.tokenOfOwnerByIndex(accounts[0], 0)
+
         })
+
     })
 
 })
