@@ -39,6 +39,21 @@ const getCardData = (state = INITIAL_STATE, action) => {
     return state.cardData
 }
 
+const flipCard = (state = INITIAL_STATE, action) => {
+    const cardId = action.cardId
+
+    return state.merge({...state,
+        cardsChosen: [...state.cardsChosen, state.cardData[cardId].name],
+        cardsChosenId: [...state.cardsChosenId, cardId]
+    })
+}
+
+const clearChosenCards = (state = INITIAL_STATE, action) =>
+    state.merge({...state, cardsChosen: [], cardsChosenId: []})
+
+const setWonCard = (state = INITIAL_STATE, action) =>
+    state.merge({...state, cardsWon: [...state.cardsWon, action.optionOneId, action.optionTwoId]})
+
 export const MemoryTypes = Types;
 
 export default createReducer(INITIAL_STATE, {
