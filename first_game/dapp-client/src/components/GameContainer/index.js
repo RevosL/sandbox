@@ -18,4 +18,4 @@ const GameContainer = (props) => {
 
 }
 
-export default GameContainer ;
+export default GameContainer;

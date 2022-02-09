@@ -1,11 +1,10 @@
 const CardBoard = (props) => {
 
-    const { cardData } = props
-
+    const { flipCard, clearChosenCards, setWonCard, onWonCard } = props
     const { cardData, cardsWon, cardsChosenId, cardsChosen } = props.memory
 
     const chooseImage = (cardId) => {
-        const cardIDstr = cardId.toString()
+        const cardIdStr = cardId.toString()
 
         if(cardsWon.includes(cardIdStr)) {
             return window.location.origin + '/images/white.png'
@@ -16,6 +15,14 @@ const CardBoard = (props) => {
             return window.location.origin + '/images/blank.png'
         }
     }
+
+    const checkAlreadyWonCard = (cardId) =>
+        cardsWon.includes(cardId)
+
+    const handleFlipCard = (cardId) => {
+        flipCard(cardId)
+    }
+
 
     return (
         cardData.map((card, key) => {
