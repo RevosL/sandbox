@@ -4,4 +4,4 @@ import memory from "./memory";
 
 export default combineReducers({
     memory
-})
+});
