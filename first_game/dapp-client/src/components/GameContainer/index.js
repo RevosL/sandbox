@@ -1,5 +1,9 @@
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { Creators as MemoryActions } from "../../store/ducks/memory";
 import { Container, Row, Col } from "react-bootstrap";
 import CardBoard from "../CardBoard";
+
 
 const GameContainer = (props) => {
 
@@ -18,4 +22,16 @@ const GameContainer = (props) => {
 
 }
 
-export default GameContainer;
+const mapStateToProps = state => ({
+    memory: state.memory,
+});
+
+const mapDispatchToProps = dispatch =>
+bindActionCreators(MemoryActions, dispatch);
+
+
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(GameContainer);

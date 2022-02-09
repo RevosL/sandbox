@@ -1,11 +1,15 @@
-import './App.css';
+import { Provider } from 'react-redux';
+import store from './store';
 import GameContainer from './components/GameContainer';
+import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <GameContainer></GameContainer>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <GameContainer></GameContainer>
+      </div>
+    </Provider>
   );
 }
 
