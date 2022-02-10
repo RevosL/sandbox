@@ -7,6 +7,11 @@ import CardBoard from "../CardBoard";
 
 const GameContainer = (props) => {
 
+    const  handleOnWonCard = (cardId, cardUrl) => {
+        console.log(cardId)
+        console.log(cardUrl)
+    }
+    
     return(
         <Container>
             <Row>
@@ -14,7 +19,7 @@ const GameContainer = (props) => {
             </Row>
             <Row>
                 <Col md={{ span: 4, offset: 4 }}>
-                    <CardBoard {...props} ></CardBoard>
+                    <CardBoard {...props} onWonCard={handleOnWonCard}  ></CardBoard>
                 </Col>
             </Row>
         </Container>

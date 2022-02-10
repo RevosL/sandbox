@@ -25,6 +25,15 @@ const CardBoard = (props) => {
         flipCard(cardId)
     }
 
+    const handleOnWonCard = (cardId, cardImage) => {
+
+        if (onWonCard !== undefined) {
+            const cardUrl = window.location.origin + cardImage
+            onWonCard(cardId, cardUrl)
+        }
+
+    }
+
     useEffect(() => {
         let alreadyChosen = cardsChosen.length
         if (alreadyChosen === 2) {
@@ -42,9 +51,14 @@ const CardBoard = (props) => {
         }
         else if (cardsChosen[0] === cardsChosen[1]) {
             alert('voce encontrou uma combinalçao')
+
+            setWonCard(optionOneId, optionTwoId)
+            handleOnWonCard(optionOneId, cardData[optionOneId].img)
         } else {
             alert('Desculpe, tente novamente')
         }
+
+        clearChosenCards()
 
     }
 
