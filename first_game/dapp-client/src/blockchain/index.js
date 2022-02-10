@@ -1,12 +1,14 @@
-import React from 'react';
-import React, { useState, useContext } from 'react';
-import Web3 from 'web3';
+import React from 'react'
+import React, { useState, useContext } from 'react'
+import Web3 from 'web3'
 
 const BlockchainContext = React.createContext();
 
 export default BlockchainContext;
 
 export const BlockchainProvider = ({children}) => {
+
+    const [account, setAccount] = useState()
 
     const loadWeb3 = async () => {
 
@@ -28,7 +30,18 @@ export const BlockchainProvider = ({children}) => {
         }
     }
 
-    
+    const loadBlockchainData = async () => {
+
+        const web3 = window.web3const 
+        const accounts = await web3.eth.getAccounts()
+
+        setAccount(accounts[0]);
+
+        // Load smart contract
+        const networkId = await web3.eth.net.getId()
+        const networkData = MemoryToken.networks[networkId]
+
+    }
 
     return (
         <BlockchainContext.Provider
