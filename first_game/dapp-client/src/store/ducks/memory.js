@@ -10,7 +10,7 @@ const CARD_DATA = [
     { name: 'milkshake', img: '/images/milkshake.png' },
     { name: 'hotdog', img: '/images/hotdog.png' },
     { name: 'fries', img: '/images/fries.png' },
-    { name: 'creeseburguer', img: '/images/creeseburguer.png' },
+    { name: 'cheeseburguer', img: '/images/cheeseburguer.png' },
     { name: 'ice-cream', img: '/images/ice-cream.png' },
     { name: 'pizza', img: '/images/pizza.png' },
     { name: 'milkshake', img: '/images/milkshake.png' },

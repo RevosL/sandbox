@@ -1,3 +1,5 @@
+import { useEffect } from "react"
+
 const CardBoard = (props) => {
 
     const { flipCard, clearChosenCards, setWonCard, onWonCard } = props
@@ -21,6 +23,29 @@ const CardBoard = (props) => {
 
     const handleFlipCard = (cardId) => {
         flipCard(cardId)
+    }
+
+    useEffect(() => {
+        let alreadyChosen = cardsChosen.length
+        if (alreadyChosen === 2) {
+            checkForMatch()
+        }
+    }, [cardsChosen])
+
+    const checkForMatch = async () => {
+
+        const optionOneId = cardsChosenId[0]
+        const optionTwoId = cardsChosenId[1]
+
+        if(optionOneId === optionTwoId) {
+            alert('Voce ja selecionou esta imagem!')
+        }
+        else if (cardsChosen[0] === cardsChosen[1]) {
+            alert('voce encontrou uma combinalçao')
+        } else {
+            alert('Desculpe, tente novamente')
+        }
+
     }
 
 
