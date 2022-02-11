@@ -50,7 +50,7 @@ const CardBoard = (props) => {
             alert('Voce ja selecionou esta imagem!')
         }
         else if (cardsChosen[0] === cardsChosen[1]) {
-            alert('voce encontrou uma combinalçao')
+            alert('voce encontrou uma combinaçao')
 
             setWonCard(optionOneId, optionTwoId)
             handleOnWonCard(optionOneId, cardData[optionOneId].img)

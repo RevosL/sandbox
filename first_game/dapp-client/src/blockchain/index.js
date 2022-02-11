@@ -9,6 +9,7 @@ export default BlockchainContext;
 
 export const BlockchainProvider = ({children}) => {
 
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [account, setAccount] = useState()
     const [balance, setBalance] = useState(0)
     const [token, setToken] = useState();
@@ -35,9 +36,32 @@ export const BlockchainProvider = ({children}) => {
         }
     }
 
+    const geMyTokensFromBlockchain = async (token, account) => {
+        let balanceOf = await token.methods.balanceOf(account).call()
+
+        const blockchainTokens = []
+        for (let i = 0; 1 < balanceOf; i++) {
+            const id = await token.methods.tokenOfOwnerByIndex(account, i).call()
+            const tokenURI = await token.methods.tokenURI(id).call()
+            blockchainTokens.push(tokenURI)
+        }
+
+        setMyTokens(blockchainTokens)
+
+    }
+
+    async function doLogin() {
+        if (await loadWeb3()){
+            await loadBlockchainData();
+            setIsAuthenticated(true);
+        }
+    }
+
+    const doMint = async (tokenURI, events) => {}
+
     const loadBlockchainData = async () => {
 
-        const web3 = window.web3const 
+        const web3 = window.web3
         const accounts = await web3.eth.getAccounts()
 
         setAccount(accounts[0]);
@@ -52,6 +76,13 @@ export const BlockchainProvider = ({children}) => {
 
             const balance = web3.utils.fromWei(await web3.eth.getBalance(address), 'ether')
             const _token = new web3.eth.Contract(abi, address)
+
+            setToken(_token)
+            setBalance(balance)
+
+            await geMyTokensFromBlockchain(_token, accounts[0]);
+        } else {
+            alert('Smart contract not deployed to detected network.')
         }
     }
 
@@ -62,7 +93,7 @@ export const BlockchainProvider = ({children}) => {
                 account,
                 balance,
                 myTokens,
-                getMyTokensFromBlockchain,
+                geMyTokensFromBlockchain,
                 doLogin,
                 doMint
             }}
