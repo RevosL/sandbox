@@ -15,7 +15,8 @@
     "reduxsauce": "^1.2.1",
     "seamless-immutable": "^7.1.4",
     "web-vitals": "^2.1.4",
-    "web3": "^1.7.0"
+    "web3": "^1.7.0",
+    "webpack": "^5.68.0"
   },
   "scripts": {
     "start": "react-scripts start",
