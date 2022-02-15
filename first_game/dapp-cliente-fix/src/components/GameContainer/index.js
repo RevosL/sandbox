@@ -5,8 +5,22 @@ import { Creators as MemoryActions } from "../../store/ducks/memory";
 import { Container, Row, Col } from "react-bootstrap";
 import CardBoard from "../CardBoard";
 
+import { useBlockchain } from '../../blockchain';
 
 const GameContainer = (props) => {
+
+    const {
+        osLoged,
+        account,
+        balance,
+        doLogin,
+        doMint,
+        myTokens,
+    } = useBlockchain();
+
+    const handleLogin = async () => {
+        await doLogin();
+    }
 
     const  handleOnWonCard = (cardId, cardUrl) => {
         console.log(cardId)
@@ -18,6 +32,14 @@ const GameContainer = (props) => {
             <Row>
                 <h2 className="text-center" style={{padding:"20px"}}>Memory Game</h2>
             </Row>
+            {!isLoged ?
+                <Row><Button onClick={handleLogin}>Login</Button></Row> :
+                <Row>
+                    <Col md={{ span: 4, offset: 4 }}>
+                        <CardBoard {...props} onWonCard={handleOnWonCard} ></CardBoard>
+                    </Col>
+                </Row>
+            }
             <Row>
                 <Col md={{ span: 4, offset: 4 }}>
                     <CardBoard {...props} onWonCard={handleOnWonCard}  ></CardBoard>
