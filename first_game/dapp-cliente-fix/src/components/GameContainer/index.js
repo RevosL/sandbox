@@ -4,13 +4,13 @@ import { Creators as MemoryActions } from "../../store/ducks/memory";
 
 import { Container, Row, Col } from "react-bootstrap";
 import CardBoard from "../CardBoard";
-
+import { Button } from "bootstrap";
 import { useBlockchain } from '../../blockchain';
 
 const GameContainer = (props) => {
 
     const {
-        osLoged,
+        isLoged,
         account,
         balance,
         doLogin,
